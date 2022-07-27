@@ -1,0 +1,52 @@
+query survey($surveyId: String!) {
+    survey(id: $surveyId) {
+        _id
+        name {
+            en
+        }
+        responses {
+            _id
+            answers {
+                ... on AnswerEnps {
+                    _id
+                    type
+                    score
+                    question {
+                        _id
+                        ... on QuestionEnps {
+                            _id
+                            type
+                            text {
+                                en
+                            }
+                        }
+                    }
+                }
+                ... on AnswerFreeText {
+                    _id
+                    type
+                    text {
+                        en
+                    }
+                    question {
+                        _id
+                        ... on QuestionFreeText {
+                            _id
+                            type
+                            text {
+                                en
+                            }
+                        }
+                    }
+                }
+            }
+            user {
+                _id
+                email
+                firstName
+                lastName
+                username
+            }
+        }
+    }
+}
