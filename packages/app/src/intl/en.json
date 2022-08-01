@@ -1,0 +1,16 @@
+{
+  "Enps": "eNPS",
+  "FreeText": "Free Text",
+  "category": "Category",
+  "detractors": "Detractors",
+  "enps": "eNPS",
+  "passive": "Passive",
+  "promoters": "Promoters",
+  "question": "Question",
+  "questions": "Questions",
+  "responsesCount": "<b>{count, number}</b> {count, plural, one {Response} other {Responses}}",
+  "statistics": "Statistics",
+  "surveys": "Surveys",
+  "total": "Total",
+  "type": "Type"
+}

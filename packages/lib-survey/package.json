@@ -1,0 +1,20 @@
+{
+    "name": "@hive/lib-survey",
+    "version": "1.0.0",
+    "main": "src/index.ts",
+    "license": "MIT",
+    "engines": {
+        "node": "14.17.6"
+    },
+    "scripts": {
+        "build": "tsc",
+        "test": "jest --rootDir . -c ../../jest.config.base.ts"
+    },
+    "dependencies": {
+        "zod": "^3.17.10"
+    },
+    "devDependencies": {
+        "@anatine/zod-mock": "^3.5.5",
+        "@faker-js/faker": "^7.3.0"
+    }
+}

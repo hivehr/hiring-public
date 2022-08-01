@@ -1,0 +1,41 @@
+{
+    "name": "@hive/service-survey",
+    "version": "1.0.0",
+    "main": "src/index.ts",
+    "license": "MIT",
+    "engines": {
+        "node": "14.17.6"
+    },
+    "scripts": {
+        "dev": "nodemon",
+        "debug": "NODE_OPTIONS='--inspect=9230' pnpm start",
+        "start": "ts-node -T src/index.ts",
+        "build": "tsc",
+        "test": "jest --rootDir . -c ../../jest.config.base.ts --passWithNoTests",
+        "generate:seed": "ts-node -T src/seed.ts"
+    },
+    "dependencies": {
+        "@hive/lib-survey": "workspace:../lib-survey",
+        "body-parser": "^1.20.0",
+        "express": "^4.18.1",
+        "express-async-errors": "^3.1.1",
+        "mongodb": "^4.8.1",
+        "ts-node": "^10.8.2"
+    },
+    "devDependencies": {
+        "@types/body-parser": "^1.19.2",
+        "@types/express": "^4.17.13",
+        "@types/express-serve-static-core": "^4.17.29",
+        "@types/node": "14.17.6",
+        "@types/qs": "^6.9.7",
+        "commander": "^9.4.0",
+        "nodemon": "^2.0.19",
+        "typescript": "^4.7.4"
+    },
+    "pnpm": {
+        "overrides": {
+            "@types/express-serve-static-core@^4": "4.17.27",
+            "@types/express@^4": "4.17.13"
+        }
+    }
+}

@@ -1,0 +1,56 @@
+{
+
+    "folders": [
+        { "name": "Hiring", "path": "./" },
+        { "path": "./packages/app" },
+        { "path": "./packages/lib-survey" },
+        { "path": "./packages/service-survey" },
+        { "path": "./packages/service-graphql" }
+    ],
+
+    "settings": {
+        "typescript.tsdk": "./node_modules/typescript/lib",
+        "typescript.preferences.importModuleSpecifier": "relative",
+
+        "editor.formatOnSave": true,
+        "[javascript]": {
+            "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+        },
+        "[javascriptreact]": {
+            "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+        },
+        "[typescript]": {
+            "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+        },
+        "[typescriptreact]": {
+            "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+        },
+        "[terraform-vars]": {
+            "editor.defaultFormatter": "hashicorp.terraform"
+        },
+        "[terraform]": {
+            "editor.defaultFormatter": "hashicorp.terraform"
+        },
+        "cSpell.words": [
+            "enps"
+        ]
+    },
+    "launch": {
+        "configurations": [
+            {
+                "name": "Attach - service-graphql",
+                "port": 9229,
+                "request": "attach",
+                "skipFiles": ["<node_internals>/**"],
+                "type": "node"
+            },
+            {
+                "name": "Attach - service-survey",
+                "port": 9230,
+                "request": "attach",
+                "skipFiles": ["<node_internals>/**"],
+                "type": "node"
+            },
+        ]
+    },
+}

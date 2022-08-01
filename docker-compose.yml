@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=hive
+    volumes:
+      - ./packages/service-survey/mongodb/seed.js:/docker-entrypoint-initdb.d/lib-survey-seed.js

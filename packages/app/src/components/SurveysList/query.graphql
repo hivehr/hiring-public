@@ -1,0 +1,12 @@
+query surveys {
+    surveys {
+        _id
+        name {
+            en
+        }
+        responses {
+            _id
+        }
+        createdAt
+    }
+}
