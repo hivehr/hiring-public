@@ -27,11 +27,11 @@ git fetch ${REMOTE_REPO} ${REMOTE_BRANCH}:${LOCAL_REMOTE_BRANCH}
 git checkout ${REMOTE_REPO}
 
 echo "Merging '${LOCAL_BASE_BRANCH}' onto local branch '${LOCAL_REMOTE_BRANCH}'..."
-git merge --allow-unrelated-histories -X ours --squash ${LOCAL_BASE_BRANCH}
-git commit --allow-empty -m "chore: update to latest assessment code"
+git checkout ${LOCAL_BASE_BRANCH} -- "*"
+git commit --allow-empty -am "chore: update to latest assessment code"
 
 echo "Pushing '${LOCAL_REMOTE_BRANCH}' to '${REMOTE_REPO}:${REMOTE_BRANCH}'..."
-git push --set-upstream ${REMOTE_REPO} ${LOCAL_REMOTE_BRANCH}:${REMOTE_BRANCH}
+git push --force --set-upstream ${REMOTE_REPO} ${LOCAL_REMOTE_BRANCH}:${REMOTE_BRANCH}
 
 echo "Checking out 'master'..."
 git checkout main

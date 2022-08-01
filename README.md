@@ -1,4 +1,4 @@
-# Hive's Hiring App
+# Hive's Hiring Exercise
 
 Welcome to Hive HR's Hiring Github repository. In this monorepo we have 4 core packages:
 
