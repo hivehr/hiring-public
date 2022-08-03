@@ -9,16 +9,24 @@ import { HTTPError, HTTPResponse } from "../response";
  * @param req Express response
  * @param res Express request
  */
-export const getAllSurveys = async (
-    _req: Request,
+export async function getAllSurveys(
+    { query }: Request,
     res: Response
-): Promise<void> => {
-    const surveys = Surveys.parse(
-        await getMongoCollection("surveys").find({}).toArray()
+): Promise<void> {
+    const limit = Number(query.limit);
+    const offset = Number(query.offset);
+
+    const allSurveys = Surveys.parse(
+        await getMongoCollection("surveys")
+            .find({})
+            .sort({ createdAt: 1 })
+            .toArray()
     );
 
+    const surveys = allSurveys.slice(offset, offset + limit);
+
     new HTTPResponse(surveys).send(res);
-};
+}
 
 /**
  * Retrieves a specific survey by ID

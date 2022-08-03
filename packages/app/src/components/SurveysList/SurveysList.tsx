@@ -1,13 +1,20 @@
 import { useQuery } from '@apollo/client';
 import { Spinner } from 'bumbag';
-import React from "react";
+import React, { useCallback } from "react";
 import { SurveysDocument, SurveysQuery } from '../../graphql/generated';
 import { SurveysListPresentationalProps, SurveysListPresentational } from "./SurveysListPresentational";
 
-export type SurveysListProps = Omit<SurveysListPresentationalProps, "surveys" | "isLoading" | "error">;
+export type SurveysListProps = Omit<SurveysListPresentationalProps, "surveys" | "isLoading" | "error" | "onLoadMoreClick">;
 
 export const SurveysList: React.FC<SurveysListProps> = (props) => {
-    const { loading, error, data } = useQuery<SurveysQuery>(SurveysDocument);
+    const limit = 5;
+
+    const { loading, error, data, fetchMore } = useQuery<SurveysQuery>(SurveysDocument, {
+        variables: {
+            offset: 0,
+            limit
+        }
+    });
 
     if (error) {
         return <>{`Error! ${error.message}`}</>;
@@ -21,7 +28,16 @@ export const SurveysList: React.FC<SurveysListProps> = (props) => {
         )
     }
 
+    const onLoadMoreClick = useCallback(() => {
+        fetchMore({
+            variables: {
+                limit,
+                offset: data.surveys.length
+            }
+        })
+    }, []);
+
     return (
-        <SurveysListPresentational {...props} surveys={data?.surveys} isLoading={loading} error={error}  />
+        <SurveysListPresentational {...props} surveys={data?.surveys} isLoading={loading} error={error} onLoadMoreClick={onLoadMoreClick} />
     );
 }

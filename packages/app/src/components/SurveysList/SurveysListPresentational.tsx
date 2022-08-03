@@ -1,4 +1,4 @@
-import { Box, BoxProps, Heading } from "bumbag";
+import { Box, BoxProps, Button, Heading } from "bumbag";
 import { ApolloError } from '@apollo/client';
 import React from "react";
 import { SurveysListItem } from "./SurveysListItem";
@@ -11,6 +11,7 @@ export type SurveysListPresentationalProps = BoxProps & {
     error?: ApolloError;
     selectedId: string | undefined;
     onItemClick: (itemId: string) => void;
+    onLoadMoreClick: any;
 };
 
 export const SurveysListPresentational: React.FC<SurveysListPresentationalProps> = ({
@@ -19,6 +20,7 @@ export const SurveysListPresentational: React.FC<SurveysListPresentationalProps>
     error,
     surveys,
     onItemClick,
+    onLoadMoreClick,
     ...props
 }) => {
     const intl = useIntl();
@@ -44,6 +46,8 @@ export const SurveysListPresentational: React.FC<SurveysListPresentationalProps>
                     onClick={() => onItemClick(survey._id)}
                 />
             ))}
+
+            <Button onClick={onLoadMoreClick}>Load more...</Button>
         </Box>
     );
 };

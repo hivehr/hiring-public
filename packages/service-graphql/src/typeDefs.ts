@@ -3,7 +3,7 @@ import { gql } from "apollo-server";
 
 export const typeDefs = gql`
     type Query {
-        surveys: [Survey!]!
+        surveys(offset: Int, limit: Int): [Survey!]!
         survey(id: String!): Survey!
     }
 
