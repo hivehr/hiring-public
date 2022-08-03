@@ -24,8 +24,8 @@ export type SurveyType = z.infer<typeof SurveyType>;
 
 export type Survey = z.infer<typeof Survey>;
 
-export const mockSurvey = (): Record<string, unknown> =>
-    generateMock(Survey, {
+export const mockSurvey = (): Record<string, unknown> => {
+    const mock = generateMock(Survey, {
         stringMap: {
             username: faker.internet.userName,
             firstName: faker.name.firstName,
@@ -33,3 +33,14 @@ export const mockSurvey = (): Record<string, unknown> =>
             [Locale.enum.en]: faker.lorem.sentence
         }
     });
+
+    // Ensure we only ever have a single eNPS question in any survey,
+    // so it conforms to how it would "look" in a real setting
+    mock.responses
+        .flatMap(a => a.answers.filter(b => b.type === "Enps"))
+        .forEach((answer, _, arr) => {
+            answer.question = arr[0].question;
+        });
+
+    return mock;
+};
