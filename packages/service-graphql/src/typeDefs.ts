@@ -19,10 +19,22 @@ export const typeDefs = gql`
         lastName: String!
     }
 
+    type SegmentedEnps {
+        promoters: Int!
+        passives: Int!
+        detractors: Int!
+    }
+
+    type SurveyStatisticEnps {
+        score: Int!
+        segmented: SegmentedEnps!
+    }
+
     type Survey {
         _id: ID!
         name: IntlRecord!
         responses: [Response!]!
+        eNPS: SurveyStatisticEnps
         updatedAt: String!
         createdAt: String!
     }
