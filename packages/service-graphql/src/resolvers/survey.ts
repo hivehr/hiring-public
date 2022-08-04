@@ -15,10 +15,12 @@ type SurveyResponse<Data = unknown> = {
 export const getSurveys: GraphQLFieldResolver<
     unknown,
     unknown,
-    unknown,
+    { offset?: number; limit?: number },
     Promise<Survey[]>
-> = async () => {
-    const { data } = await surveyAxios.get<SurveyResponse<Survey[]>>("/");
+> = async (_, { limit, offset }) => {
+    const { data } = await surveyAxios.get<SurveyResponse<Survey[]>>("/", {
+        params: { limit, offset }
+    });
 
     return data.data;
 };
