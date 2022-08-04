@@ -48,5 +48,13 @@ query survey($surveyId: String!) {
                 username
             }
         }
+        eNPS {
+            score
+            segmented {
+                detractors
+                passives
+                promoters
+            }
+        }
     }
 }

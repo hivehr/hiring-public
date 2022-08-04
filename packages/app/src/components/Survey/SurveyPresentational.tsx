@@ -22,6 +22,7 @@ export const SurveyPresentational: React.FC<SurveyPresentationalProps> = ({
     _id,
     name,
     responses,
+    eNPS,
     isLoading,
     ...props
 }) => {
@@ -99,15 +100,49 @@ export const SurveyPresentational: React.FC<SurveyPresentationalProps> = ({
 
                 <Box>
                     <Heading use="h3" marginBottom="major-3">
-                        {intl.formatMessage({
-                            id: "statistics",
-                            defaultMessage: "Statistics"
-                        })}
+                        Statistics
                     </Heading>
-
-                    TODO
+                    <Stack spacing="major-2">
+                        <Heading use="h4">
+                            eNPS
+                        </Heading>
+                        <Table>
+                            <Table.Head>
+                                <Table.Row>
+                                    <Table.HeadCell>
+                                        Category
+                                    </Table.HeadCell>
+                                    <Table.HeadCell textAlign="end">
+                                        Total
+                                    </Table.HeadCell>
+                                </Table.Row>
+                            </Table.Head>
+                            <Table.Body>
+                                <Table.Row>
+                                    <Table.Cell>Detractors</Table.Cell>
+                                    <Table.Cell textAlign="end">{eNPS?.segmented.detractors}</Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                    <Table.Cell>Passive</Table.Cell>
+                                    <Table.Cell textAlign="end">{eNPS?.segmented.passives}</Table.Cell>
+                                </Table.Row>
+                                <Table.Row>
+                                    <Table.Cell>Promoters</Table.Cell>
+                                    <Table.Cell textAlign="end">{eNPS?.segmented.promoters}</Table.Cell>
+                                </Table.Row>
+                            </Table.Body>
+                            <Table.Foot>
+                                <Table.Row fontWeight="bold" fontSize="1.1em">
+                                    <Table.Cell>eNPS score (%Detractors - %Promoters)</Table.Cell>
+                                    <Table.Cell textAlign="end">
+                                        {eNPS?.score}
+                                    </Table.Cell>
+                                </Table.Row>
+                            </Table.Foot>
+                        </Table>
+                    </Stack>
                 </Box>
-        </Stack>
+            </Stack>
         </Card>
     );
 }
