@@ -1,4 +1,5 @@
 export * from "./answer";
+export * from "./enps";
 export * from "./locale";
 export * from "./question";
 export * from "./response";
