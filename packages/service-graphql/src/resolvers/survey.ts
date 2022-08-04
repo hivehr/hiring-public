@@ -1,4 +1,5 @@
 import { Survey } from "@hive/lib-survey";
+import { SegmentedEnpsScores } from "@hive/lib-survey/src/enps";
 import axios from "axios";
 import { GraphQLFieldResolver } from "graphql";
 
@@ -31,6 +32,25 @@ export const getSurveyById: GraphQLFieldResolver<
     Promise<Survey>
 > = async (_, { id }) => {
     const { data } = await surveyAxios.get<SurveyResponse<Survey>>(`/${id}`);
+
+    return data.data;
+};
+
+export const getSurveyEnpsById: GraphQLFieldResolver<
+    Survey,
+    unknown,
+    unknown,
+    Promise<{
+        score: number;
+        segmented: SegmentedEnpsScores;
+    }>
+> = async ({ _id: id }) => {
+    const { data } = await surveyAxios.get<
+        SurveyResponse<{
+            score: number;
+            segmented: SegmentedEnpsScores;
+        }>
+    >(`/${id}/statistics/enps`);
 
     return data.data;
 };

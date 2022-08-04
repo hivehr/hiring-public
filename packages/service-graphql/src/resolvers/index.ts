@@ -1,5 +1,5 @@
 import { Answer, AnswerType } from "@hive/lib-survey";
-import { getSurveyById, getSurveys } from "./survey";
+import { getSurveyById, getSurveyEnpsById, getSurveys } from "./survey";
 
 const ANSWER_TYPE_MAP = {
     [AnswerType.enum.Enps]: "AnswerEnps",
@@ -11,6 +11,10 @@ export const resolvers = {
         __resolveType: (obj: Answer): string | null => {
             return ANSWER_TYPE_MAP[obj.type] ?? null;
         }
+    },
+
+    Survey: {
+        eNPS: getSurveyEnpsById
     },
 
     Query: {

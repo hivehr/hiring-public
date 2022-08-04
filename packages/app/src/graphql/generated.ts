@@ -97,13 +97,27 @@ export type Response = {
   user: User;
 };
 
+export type SegmentedEnps = {
+  __typename?: 'SegmentedEnps';
+  detractors: Scalars['Int'];
+  passives: Scalars['Int'];
+  promoters: Scalars['Int'];
+};
+
 export type Survey = {
   __typename?: 'Survey';
   _id: Scalars['ID'];
   createdAt: Scalars['String'];
+  eNPS?: Maybe<SurveyStatisticEnps>;
   name: IntlRecord;
   responses: Array<Response>;
   updatedAt: Scalars['String'];
+};
+
+export type SurveyStatisticEnps = {
+  __typename?: 'SurveyStatisticEnps';
+  score: Scalars['Int'];
+  segmented: SegmentedEnps;
 };
 
 export type User = {
@@ -120,7 +134,7 @@ export type SurveyQueryVariables = Exact<{
 }>;
 
 
-export type SurveyQuery = { __typename?: 'Query', survey: { __typename?: 'Survey', _id: string, name: { __typename?: 'IntlRecord', en?: string | null }, responses: Array<{ __typename?: 'Response', _id: string, answers: Array<{ __typename?: 'AnswerEnps', _id: string, type: AnswerType, score: number, question: { __typename?: 'QuestionEnps', _id: string, type: QuestionType, text: { __typename?: 'IntlRecord', en?: string | null } } } | { __typename?: 'AnswerFreeText', _id: string, type: AnswerType, text: { __typename?: 'IntlRecord', en?: string | null }, question: { __typename?: 'QuestionFreeText', _id: string, type: QuestionType, text: { __typename?: 'IntlRecord', en?: string | null } } }>, user: { __typename?: 'User', _id: string, email: string, firstName: string, lastName: string, username: string } }> } };
+export type SurveyQuery = { __typename?: 'Query', survey: { __typename?: 'Survey', _id: string, name: { __typename?: 'IntlRecord', en?: string | null }, responses: Array<{ __typename?: 'Response', _id: string, answers: Array<{ __typename?: 'AnswerEnps', _id: string, type: AnswerType, score: number, question: { __typename?: 'QuestionEnps', _id: string, type: QuestionType, text: { __typename?: 'IntlRecord', en?: string | null } } } | { __typename?: 'AnswerFreeText', _id: string, type: AnswerType, text: { __typename?: 'IntlRecord', en?: string | null }, question: { __typename?: 'QuestionFreeText', _id: string, type: QuestionType, text: { __typename?: 'IntlRecord', en?: string | null } } }>, user: { __typename?: 'User', _id: string, email: string, firstName: string, lastName: string, username: string } }>, eNPS?: { __typename?: 'SurveyStatisticEnps', score: number, segmented: { __typename?: 'SegmentedEnps', detractors: number, passives: number, promoters: number } } | null } };
 
 export type SurveysQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']>;
