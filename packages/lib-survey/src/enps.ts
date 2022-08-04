@@ -1,12 +1,4 @@
-import { z } from "zod";
-
-export const SegmentedEnpsScores = z.object({
-    promoters: z.number(),
-    passives: z.number(),
-    detractors: z.number()
-});
-
-export type SegmentedEnpsScores = z.infer<typeof SegmentedEnpsScores>;
+import { SegmentedEnpsScores } from "./definitions/enps";
 
 /**
  * Employee Net Promoter Score (eNPS) is a way of measuring how likely your employees are to recommend your organization as a good place to work.
