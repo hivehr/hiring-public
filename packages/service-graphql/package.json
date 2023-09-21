@@ -17,7 +17,7 @@
         "@hive/lib-survey": "workspace:../lib-survey",
         "apollo-server": "^3.10.0",
         "axios": "^0.27.2",
-        "graphql": "^16.5.0",
+        "graphql": "^16.8.1",
         "ts-node": "^10.8.2"
     },
     "devDependencies": {
