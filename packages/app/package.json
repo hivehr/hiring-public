@@ -21,7 +21,7 @@
         "@types/react": "^18.0.14",
         "@types/react-dom": "^18.0.6",
         "bumbag": "^2.7.20",
-        "graphql": "^16.5.0",
+        "graphql": "^16.8.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-intl": "^6.0.5",
